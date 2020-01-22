@@ -1,0 +1,14 @@
+<center>
+<h1>Delete Following Article:</h1>
+
+
+  <h2><%= @article.title %></h2>
+  <h3><%= @article.content %></h3>
+  <br><br>
+
+  <form action="/articles/<%= @article.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <p>Press "Delete" to confirm deletion of current article!</p>
+    <input type="submit" value="delete">
+  </form>
+</center>
