@@ -27,7 +27,25 @@ class ApplicationController < Sinatra::Base
     @article.title = title
     @article.content = content
     @article.save
-    erb :show
+    redirect "/articles/#{Article.last.id}"
+  end
+
+  get '/articles/:id/edit' do
+    @article = Article.find(params[:id])
+    erb :edit
+  end
+
+  delete '/articles/:id' do
+    Article.delete(params[:id])
+    redirect '/articles'
+  end
+
+  patch '/articles/:id' do
+    @article = Article.find(params[:id])
+    @article.content = params[:content]
+    @article.title = params[:title]
+    @article.save
+    redirect "/articles/#{Article.last.id}"
   end
 
   get '/articles/:id' do
